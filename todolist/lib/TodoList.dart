@@ -27,6 +27,12 @@ class _TodoListState extends State<TodoList> {
     });
   }
 
+  void clearAllItems() {
+    setState(() {
+      _todoItems.clear();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,12 +66,10 @@ class _TodoListState extends State<TodoList> {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.center,
-            child: Container(
-              width: 120,
-              height: 40,
-              child: ElevatedButton(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ElevatedButton(
                 onPressed: addTodoItem,
                 child: Text(
                   "Add",
@@ -80,7 +84,22 @@ class _TodoListState extends State<TodoList> {
                   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 ),
               ),
-            ),
+              ElevatedButton(
+                onPressed: clearAllItems,
+                child: Text(
+                  "Clear All",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                ),
+              ),
+            ],
           ),
           Expanded(
             child: Container(
